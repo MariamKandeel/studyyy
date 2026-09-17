@@ -1,0 +1,278 @@
+
+/* Course page */
+.courses-page {
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 0 25px 50px;
+}
+
+.courses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 45px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, .25);
+}
+
+.brand h1 {
+  color: #e8f0fb;
+  font-size: 23px;
+  margin: 0;
+}
+
+.brand p {
+  color: #71849e;
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.course-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 30px;
+}
+
+.course-intro h2 {
+  color: #e8f0fb;
+  font-size: 42px;
+  margin: 4px 0 8px;
+}
+
+.intro-text {
+  color: #9fb0c7;
+  font-size: 15px;
+}
+
+.back-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: #14263d;
+  color: #d7e3f2;
+  border: 1px solid #263b55;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.back-btn:hover {
+  background: #1b3553;
+  transform: translateY(-2px);
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.course-card {
+  background: #0d1b2e;
+  border: 1px solid #203754;
+  border-radius: 22px;
+  padding: 27px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.18);
+  transition: .25s;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  border-color: #2563eb;
+  box-shadow: 0 20px 40px rgba(0,0,0,.28);
+}
+
+.course-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.course-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  background: #102f55;
+  color: #60a5fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.course-code {
+  color: #71849e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .7px;
+}
+
+.course-card h3 {
+  color: #e8f0fb;
+  font-size: 22px;
+  margin: 22px 0 7px;
+}
+
+.course-description {
+  color: #9fb0c7;
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 42px;
+}
+
+.course-stats {
+  display: flex;
+  gap: 22px;
+  margin: 23px 0 18px;
+}
+
+.course-stat {
+  color: #71849e;
+  font-size: 12px;
+}
+
+.course-stat strong {
+  display: block;
+  color: #e8f0fb;
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+.course-progress {
+  height: 8px;
+  width: 100%;
+  background: #172a42;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.course-progress .progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #2563eb;
+  border-radius: 20px;
+  transition: width .5s;
+}
+
+.course-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.progress-label {
+  color: #71849e;
+  font-size: 12px;
+}
+
+.progress-label strong {
+  color: #60a5fa;
+}
+
+.view-course {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 10px 17px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 13px;
+  transition: .25s;
+}
+
+.view-course:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.overall-card {
+  margin-top: 25px;
+  padding: 25px;
+  background: #0d1b2e;
+  border: 1px solid #203754;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.16);
+}
+
+.overall-card h3 {
+  color: #e8f0fb;
+  font-size: 30px;
+  margin-top: 4px;
+}
+
+.overall-progress {
+  width: 100%;
+  height: 10px;
+  background: #172a42;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 17px 0 12px;
+}
+
+.overall-progress .progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #2563eb;
+  border-radius: 20px;
+  transition: width .5s;
+}
+
+.overall-numbers {
+  display: flex;
+  gap: 25px;
+  color: #71849e;
+  font-size: 13px;
+}
+
+.overall-numbers strong {
+  color: #d7e3f2;
+}
+
+@media (max-width: 800px) {
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-intro {
+    align-items: flex-start;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  .course-intro h2 {
+    font-size: 34px;
+  }
+
+  .all-tasks-btn {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .all-tasks-btn:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
