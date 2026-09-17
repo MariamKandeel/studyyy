@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joe's Courses</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔫</text></svg>">  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="courses.css" />
+</head>
+<body class="courses-body">
+  <div class="courses-page">
+    <header class="courses-header">
+      <div class="courses-brand">
+        
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        <a href="calendar.html" class="all-tasks-btn"><i class="fas fa-calendar"></i> Calendar</a>
+        <a href="index.html" class="all-tasks-btn"><i class="fas fa-clipboard-list"></i> All Tasks</a>
+      </div>
+    </header>
+
+    <section class="course-intro">
+      <div>
+        <p class="greeting" id="greeting"></p>
+        <h2>Your Courses</h2>
+        <p class="intro-text">
+          Choose a course to see your tasks, deadlines and progress to reach your goals.
+        </p>
+      </div>
+    </section>
+
+    <section class="course-grid" id="courseGrid"></section>
+
+    <section class="overall-card">
+      <div>
+        <span class="overall-label">Overall Progress</span>
+        <strong id="overallProgressText">0%</strong>
+      </div>
+      <div class="overall-progress">
+        <div class="progress-fill" id="overallProgressBar" style="width: 0%"></div>
+      </div>
+      <div class="overall-stats">
+        <span><strong id="totalCourseTasks">0</strong> Total Tasks</span>
+        <span><strong id="completedCourseTasks">0</strong> Completed</span>
+      </div>
+    </section>
+  </div>
+
+  <script src="courses.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joe's Course </title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔫</text></svg>">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="course-todo.css" />
+</head>
+<body>
+  <div class="page-wrap">
+    <div class="container">
+      <div class="header">
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input id="searchInput" type="text" placeholder="Search tasks..." />
+        </div>
+        <div class="header-actions">
+          <a class="back-btn" href="courses.html"><i class="fas fa-arrow-left"></i> Courses</a>
+          <a class="back-btn" href="calendar.html"><i class="fas fa-calendar"></i> Calendar</a>
+          <div class="notification-wrapper">
+            <button class="icon-btn" id="notificationBell" type="button" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-bell"></i>
+              <span class="notification-dot" id="notificationDot"></span>
+              <span class="notification-count" id="notificationCount" hidden>0</span>
+            </button>
+            <div class="notification-panel" id="notificationPanel" aria-hidden="true">
+              <div class="notification-panel-header">
+                <div><strong>Notifications</strong><span>Calendar deadlines</span></div>
+              </div>
+              <div id="notificationList" class="notification-list"></div>
+            </div>
+          </div>
+          <a href="profile.html" class="icon-btn">
+            <i class="fas fa-gun"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="title-section">
+          <div class="greeting" id="greeting"></div>
+          <div class="course-heading-row">
+            <div>
+              <div class="course-label" id="courseCode">COURSE</div>
+              <h1 id="courseName">Course Tasks</h1>
+              <p class="course-description" id="courseDescription"></p>
+            </div>
+            <button class="add-btn" onclick="openModal()">
+              <i class="fas fa-plus"></i> Add New
+            </button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-header">
+            <h2>On Hold</h2>
+            <span class="badge badge-pending" id="pendingBadge">0</span>
+          </div>
+          <div id="onHoldTasks"></div>
+        </div>
+
+        <div class="section">
+          <div class="section-header">
+            <h2>Completed</h2>
+            <span class="badge badge-inactive">Inactive</span>
+          </div>
+          <div id="completedTasks"></div>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Results Summary</h3>
+
+          <div class="stat-card">
+            <div class="stat-label">Completion Rate</div>
+            <div class="stat-value" id="completionRateValue">0%</div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="completionProgress" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-label">Total Tasks</div>
+            <div class="stat-value" id="totalTasks">0</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-label">Completed</div>
+            <div class="stat-value" id="completedCount">0</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-label">Pending</div>
+            <div class="stat-value" id="pendingCount">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="taskModal">
+    <div class="modal-content">
+      <button class="modal-close" type="button" onclick="closeModal()">
+        <i class="fas fa-xmark"></i>
+      </button>
+      <h2 class="modal-header" id="modalTitle">Add New Task</h2>
+
+      <form id="taskForm">
+        <div class="form-group">
+          <label for="taskTitle">Task Title</label>
+          <input type="text" id="taskTitle" placeholder="One Challenge" required />
+        </div>
+
+        <div class="form-group">
+          <label for="taskStatus">Status</label>
+          <select id="taskStatus">
+            <option value="pending">Pending</option>
+            <option value="progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="taskPriority">Priority</label>
+          <select id="taskPriority">
+            <option value="minor">Minor</option>
+            <option value="normal">Normal</option>
+            <option value="critical">Critical</option>
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal delete-task-modal" id="deleteTaskModal" aria-hidden="true">
+    <div class="modal-content delete-task-content" role="dialog" aria-modal="true" aria-labelledby="deleteTaskHeading">
+      <button class="modal-close" id="closeDeleteTaskBtn" type="button" aria-label="Close">
+        <i class="fas fa-xmark"></i>
+      </button>
+      <div class="delete-task-icon"><i class="fas fa-trash-can"></i></div>
+      <h2 class="modal-header delete-task-heading" id="deleteTaskHeading">Delete this task?</h2>
+      <p class="delete-task-message">Are you sure you want to remove <strong id="deleteTaskName">this task</strong>? This action cannot be undone.</p>
+      <input type="hidden" id="deleteTaskId" />
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="cancelDeleteTaskBtn">Cancel</button>
+        <button type="button" class="btn delete-task-confirm" id="confirmDeleteTaskBtn"><i class="fas fa-trash-can"></i> Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="notifications.js"></script>
+  <script src="course-todo.js"></script>
+</body>
+</html>
