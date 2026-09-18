@@ -276,3 +276,79 @@
     text-decoration: none;
   }
 }
+
+/* =========================================================
+   MOBILE RESPONSIVENESS ONLY
+   Desktop styles above are intentionally unchanged.
+   ========================================================= */
+@media (max-width: 700px) {
+  .courses-page {
+    width: 100%;
+    margin: 24px auto;
+    padding: 0 14px 35px;
+  }
+
+  .courses-header {
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+
+  .course-intro {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .course-intro h2 { font-size: 32px; }
+
+  .intro-text { line-height: 1.5; }
+
+  .course-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .course-card {
+    padding: 21px;
+    border-radius: 19px;
+  }
+
+  .course-card h3 {
+    font-size: 20px;
+    margin-top: 18px;
+  }
+
+  .course-stats {
+    gap: 18px;
+    flex-wrap: wrap;
+    margin: 19px 0 16px;
+  }
+
+  .course-bottom {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .view-course { white-space: nowrap; }
+
+  .overall-card {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .overall-card h3 { font-size: 27px; }
+
+  .overall-numbers {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 420px) {
+  .courses-page { padding: 0 9px 28px; }
+  .courses-header { margin-bottom: 24px; }
+  .course-intro h2 { font-size: 29px; }
+  .course-card { padding: 18px; }
+}
