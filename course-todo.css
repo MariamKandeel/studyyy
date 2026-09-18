@@ -666,3 +666,57 @@ body {
 .notification-empty { display:flex; align-items:center; gap:10px; padding:24px 18px; color:#7f95aa; font:12px "Segoe UI",sans-serif; }
 .notification-empty i { color:#38bdf8; }
 @media (max-width:520px) { .notification-panel { width:min(330px,calc(100vw - 40px)); right:-8px; } }
+
+/* =========================================================
+   EXTRA MOBILE FITTING ONLY
+   Existing desktop styling is intentionally unchanged.
+   ========================================================= */
+@media (max-width: 520px) {
+  body { padding: 12px 8px; }
+
+  .container {
+    width: 100%;
+    padding: 18px 12px;
+    border-radius: 20px;
+    gap: 18px;
+  }
+
+  .header { width: 100%; }
+
+  .header-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .header-actions .back-btn {
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .course-heading-row {
+    gap: 12px;
+  }
+
+  .title-section h1 { font-size: 29px; }
+
+  .task-item {
+    padding: 14px 12px;
+    gap: 10px;
+  }
+
+  .task-content { flex-basis: calc(100% - 40px); }
+
+  .status-badge,
+  .priority-badge { font-size: 10px; }
+
+  .sidebar { padding: 17px; }
+
+  .modal-content {
+    padding: 22px 16px;
+    max-height: calc(100vh - 20px);
+    overflow-y: auto;
+  }
+
+  .modal-actions { flex-wrap: wrap; }
+}
