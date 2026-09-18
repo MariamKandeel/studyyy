@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueFlow Login</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔫</text></svg>">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;background:#071a2d;color:#fff;padding:20px}
+    .login-card{width:min(420px,100%);background:#0d2944;border:1px solid rgba(147,197,253,.18);border-radius:18px;padding:34px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+    .logo{width:58px;height:58px;border-radius:15px;display:grid;place-items:center;background:#123f68;color:#93c5fd;font-size:25px;margin-bottom:18px}
+    h1{margin:0 0 8px;font-size:28px}.subtitle{margin:0 0 26px;color:#9eb5c9;font-size:14px;line-height:1.5}
+    label{display:block;margin:0 0 7px;color:#cfe0ef;font-size:13px;font-weight:700}
+    input{width:100%;padding:13px 14px;margin-bottom:17px;border:1px solid #274966;border-radius:10px;background:#081e33;color:#fff;outline:none}
+    input:focus{border-color:#60a5fa}
+    button{width:100%;border:0;border-radius:10px;padding:13px;background:#2563a8;color:#fff;font-weight:700;cursor:pointer;font-size:14px}
+    button:hover{background:#347fc4}.error{min-height:20px;color:#fca5a5;font-size:13px;margin:0 0 12px}
+    .status{margin-top:16px;color:#8fa9be;font-size:12px;text-align:center}
+  </style>
+</head>
+<body>
+  <main class="login-card">
+    <div class="logo"><i class="fas fa-gun"></i></div>
+    <h1>Welcome to BlueFlow</h1>
+    <p class="subtitle">Sign in to keep your tasks and calendar synchronized across your phone and laptop.</p>
+    <form id="loginForm">
+      <label for="email">Email</label>
+      <input id="email" type="email" autocomplete="email" required />
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" required />
+      <p class="error" id="error"></p>
+      <button type="submit"><i class="fas fa-right-to-bracket"></i> Sign In</button>
+    </form>
+    <div class="status" id="status"></div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-init.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const next = params.get("next") || "courses.html";
+    const form = document.getElementById("loginForm");
+    const error = document.getElementById("error");
+    const status = document.getElementById("status");
+
+    BlueFlowFirebase.auth.onAuthStateChanged(user => {
+      if (user) window.location.replace(next.startsWith("http") ? "courses.html" : next);
+    });
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      error.textContent = "";
+      status.textContent = "Signing in...";
+      try {
+        await BlueFlowFirebase.auth.signInWithEmailAndPassword(
+          document.getElementById("email").value.trim(),
+          document.getElementById("password").value
+        );
+      } catch (err) {
+        console.error(err);
+        status.textContent = "";
+        error.textContent = "The email or password is not correct. Please try again.";
+      }
+    });
+  </script>
+</body>
+</html>
